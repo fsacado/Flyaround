@@ -33,6 +33,4 @@ class FlightType extends AbstractType
     {
         return 'wcs_coavbundle_flight';
     }
-
-
 }

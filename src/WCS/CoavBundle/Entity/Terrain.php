@@ -89,6 +89,11 @@ class Terrain
     private $departures;
 
     /**
+     * @ORM\OneToMany(targetEntity="WCS\CoavBundle\Entity\Flight", mappedBy="arrival")
+     */
+    private $arrivals;
+
+    /**
      * Get id
      *
      * @return int
@@ -329,5 +334,39 @@ class Terrain
     public function getDepartures()
     {
         return $this->departures;
+    }
+
+    /**
+     * Add arrival
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $arrival
+     *
+     * @return Terrain
+     */
+    public function addArrival(\WCS\CoavBundle\Entity\Flight $arrival)
+    {
+        $this->arrivals[] = $arrival;
+
+        return $this;
+    }
+
+    /**
+     * Remove arrival
+     *
+     * @param \WCS\CoavBundle\Entity\Flight $arrival
+     */
+    public function removeArrival(\WCS\CoavBundle\Entity\Flight $arrival)
+    {
+        $this->arrivals->removeElement($arrival);
+    }
+
+    /**
+     * Get arrivals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArrivals()
+    {
+        return $this->arrivals;
     }
 }

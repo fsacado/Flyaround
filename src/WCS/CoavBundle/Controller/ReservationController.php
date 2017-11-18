@@ -6,6 +6,7 @@ use WCS\CoavBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use WCS\CoavBundle\WCSCoavBundle;
 
 /**
  * Reservation controller.
@@ -25,9 +26,12 @@ class ReservationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $reservations = $em->getRepository('WCSCoavBundle:Reservation')->findAll();
+        $passengers = new Reservation;
+        $passengers->getPassengers();
 
         return $this->render('reservation/index.html.twig', array(
             'reservations' => $reservations,
+            'passengers'=> $passengers,
         ));
     }
 

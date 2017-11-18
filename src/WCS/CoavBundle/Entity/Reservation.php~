@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    public function __toString()
+    {
+        return $this->flight . ' ' . $this->nbReservedSeats . ' ' . $this->getWasDone();
+    }
+
     /**
      * @var int
      *
@@ -42,7 +47,7 @@ class Reservation
     private $passengers;
 
     /**
-     * @ORM\OneToOne(targetEntity="WCS\CoavBundle\Entity\Flight")
+     * @ORM\ManyToOne(targetEntity="WCS\CoavBundle\Entity\Flight")
      */
     private $flight;
 
@@ -53,6 +58,13 @@ class Reservation
      */
     private $wasDone;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -113,30 +125,6 @@ class Reservation
     }
 
     /**
-     * Set passenger
-     *
-     * @param string $passenger
-     *
-     * @return Reservation
-     */
-    public function setPassenger($passenger)
-    {
-        $this->passenger = $passenger;
-
-        return $this;
-    }
-
-    /**
-     * Get passenger
-     *
-     * @return string
-     */
-    public function getPassenger()
-    {
-        return $this->passenger;
-    }
-
-    /**
      * Set flight
      *
      * @param string $flight
@@ -183,13 +171,7 @@ class Reservation
     {
         return $this->wasDone;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Add passenger

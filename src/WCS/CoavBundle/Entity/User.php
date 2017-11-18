@@ -11,7 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="WCS\CoavBundle\Repository\UserRepository")
  */
 class User
+
 {
+
+    public function __toString()
+    {
+        return $this->firstName . ' - ' . $this->lastName;
+    }
+
     /**
      * @var int
      *
@@ -84,10 +91,6 @@ class User
      */
     private $note;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="WCS\CoavBundle\Entity\Review")
-     */
-    private $reviews;
 
     /**
      * @var bool
@@ -108,6 +111,14 @@ class User
      * @ORM\JoinColumn(nullable=false)
      */
     private $reservations;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -405,13 +416,6 @@ class User
     public function getIsActive()
     {
         return $this->isActive;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

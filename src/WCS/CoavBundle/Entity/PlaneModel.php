@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PlaneModel
 {
+
+    public function __toString() :string
+    {
+        return $this->cruiseSpeed . " - " . $this->getPlaneNbSeats();
+    }
     /**
      * @var int
      *
