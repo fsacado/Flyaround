@@ -18,12 +18,22 @@
         <tbody>
         {% for review in reviews %}
             <tr>
-                <td>{{ review.id }}</td>
-                <td>{{ review.text }}</td>
-                <td>{{ review.userRated }}</td>
-                <td>{{ review.reviewAuthor }}</td>
-                <td>{{ review.publicationDate|date('d-m-Y') }}</td>
-                <td>{{ review.note }}</td>
+            <td>{{ review.id }}</td>
+            <td>{{ review.text }}</td>
+            <td>{{ review.userRated }}</td>
+            <td>{{ review.reviewAuthor }}</td>
+            <td>{{ review.publicationDate|date('d-m-Y') }}</td>
+            <td>{{ review.note }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('review_show', {'id': review.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('review_edit', {'id': review.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
             </tr>
         {% endfor %}
         </tbody>
