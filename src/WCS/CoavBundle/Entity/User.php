@@ -3,14 +3,15 @@
 namespace WCS\CoavBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="WCS\CoavBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 
 {
 
@@ -26,68 +27,54 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="userName", type="string", length=32)
-     */
-    private $userName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="firstName", type="string", length=32)
+     * @ORM\Column(name="firstName", type="string", length=32, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=32)
+     * @ORM\Column(name="lastName", type="string", length=32, nullable=true)
      */
     private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=64)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="phoneNumber", type="string", length=32)
+     * @ORM\Column(name="phoneNumber", type="string", length=32, nullable=true)
      */
     private $phoneNumber;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date")
+     * @ORM\Column(name="birthDate", type="date", nullable=true)
      */
     private $birthDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(name="creationDate", type="datetime", nullable=true)
      */
     private $creationDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="role", type="string", length=16)
+     * @ORM\Column(name="role", type="string", length=16, nullable=true)
      */
     private $role;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="note", type="smallint", nullable=true)
+     * @ORM\Column(name="note", type="smallint", nullable=true, nullable=true)
      */
     private $note;
 
@@ -95,14 +82,14 @@ class User
     /**
      * @var bool
      *
-     * @ORM\Column(name="isACertifiedPilot", type="boolean")
+     * @ORM\Column(name="isACertifiedPilot", type="boolean", nullable=true)
      */
     private $isACertifiedPilot;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="isActive", type="boolean")
+     * @ORM\Column(name="isActive", type="boolean", nullable=true)
      */
     private $isActive;
 
@@ -117,6 +104,8 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -130,29 +119,29 @@ class User
         return $this->id;
     }
 
-    /**
-     * Set userName
-     *
-     * @param string $userName
-     *
-     * @return User
-     */
-    public function setUserName($userName)
-    {
-        $this->userName = $userName;
-
-        return $this;
-    }
-
-    /**
-     * Get userName
-     *
-     * @return string
-     */
-    public function getUserName()
-    {
-        return $this->userName;
-    }
+//    /**
+//     * Set userName
+//     *
+//     * @param string $userName
+//     *
+//     * @return User
+//     */
+//    public function setUserName($userName)
+//    {
+//        $this->userName = $userName;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get userName
+//     *
+//     * @return string
+//     */
+//    public function getUserName()
+//    {
+//        return $this->userName;
+//    }
 
     /**
      * Set firstName
@@ -202,29 +191,29 @@ class User
         return $this->lastName;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
+//    /**
+//     * Set email
+//     *
+//     * @param string $email
+//     *
+//     * @return User
+//     */
+//    public function setEmail($email)
+//    {
+//        $this->email = $email;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get email
+//     *
+//     * @return string
+//     */
+//    public function getEmail()
+//    {
+//        return $this->email;
+//    }
 
     /**
      * Set phoneNumber
@@ -346,29 +335,29 @@ class User
         return $this->note;
     }
 
-    /**
-     * Set reviews
-     *
-     * @param integer $reviews
-     *
-     * @return User
-     */
-    public function setReviews($reviews)
-    {
-        $this->reviews = $reviews;
-
-        return $this;
-    }
-
-    /**
-     * Get reviews
-     *
-     * @return int
-     */
-    public function getReviews()
-    {
-        return $this->reviews;
-    }
+//    /**
+//     * Set reviews
+//     *
+//     * @param integer $reviews
+//     *
+//     * @return User
+//     */
+//    public function setReviews($reviews)
+//    {
+//        $this->reviews = $reviews;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get reviews
+//     *
+//     * @return int
+//     */
+//    public function getReviews()
+//    {
+//        return $this->reviews;
+//    }
 
     /**
      * Set isACertifiedPilot
